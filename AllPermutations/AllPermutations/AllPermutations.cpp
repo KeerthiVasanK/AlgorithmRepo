@@ -2,7 +2,6 @@
 //
 
 #include "stdafx.h"
-#include "string"
 
 /*
  * This implementation can accept syntactically correct sentences(with spaces and punctuatuions).

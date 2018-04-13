@@ -2,7 +2,7 @@
 //
 
 #include "stdafx.h"
-//#include "TwoDimensionArray.h"
+#include "TwoDimensionArray.h"
 
 enum BoardOccupance
 {
