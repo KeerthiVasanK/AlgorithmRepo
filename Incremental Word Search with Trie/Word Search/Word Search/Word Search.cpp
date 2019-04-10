@@ -55,15 +55,21 @@ Trie* pRoot;
 void Insert(Trie* node, Item item, int level = 0)
 {
 	char currentChar = item.value[level];
-
+	int length = item.value.length();
+	
 	std::map<char, Node_Trie*>::iterator x = node->children.find(currentChar);
 
 	if(x == node->children.end())
-	{		
 		node->children.insert(x, std::pair<char, Node_Trie*>(currentChar, new Trie()));
-	}
 
 	node->items.push_back(item.id);
+
+	x = node->children.find(currentChar);
+	
+	if(length != level)
+		Insert(x->second, item, level + 1);
+	else
+		node->bEndOfString = true;
 }
 
 int _tmain(int argc, _TCHAR* argv[])
