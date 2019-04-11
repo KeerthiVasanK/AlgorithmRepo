@@ -33,6 +33,13 @@ void ConstructData()
 	SearchableList.push_back(Item(8,"Pink"));
 	SearchableList.push_back(Item(9,"Oswald"));
 	SearchableList.push_back(Item(10,"Warp"));
+
+	printf("\n The universal set of strings is...\n\n");
+
+	for(int i = 0; i < SearchableList.size(); i++)
+		printf("\n %s", SearchableList.at(i).value.c_str());
+
+	printf("\n\n");
 }
 
 typedef struct Node_Trie
@@ -96,18 +103,25 @@ std::vector<long> Search(Trie* node, std::string text, int level = 0)
 
 void SearchText()
 {
-	char text[100]; 
-	printf("\n Enter text to search:\t");
-	scanf("%s", text);
-
-	std::vector<long> filteredList = Search(pRoot, std::string(text));
-
-	for(int i = 0; i < filteredList.size(); i++)
+	do
 	{
-		std::string value = SearchableList.at(filteredList.at(i) - 1).value;
+		char text[100]; 
+		printf("\n Enter text to search:\t");
+		scanf("%s", text);
 
-		printf("%s \n", value.c_str());
-	}
+		std::vector<long> filteredList = Search(pRoot, std::string(text));
+
+		if(0 == filteredList.size())
+			printf("\n No result found");
+		else
+		{
+			for(int i = 0; i < filteredList.size(); i++)
+				printf("%s \n", SearchableList.at(filteredList.at(i) - 1).value.c_str());
+		}
+	
+		printf("\n\n");
+
+	}while(true);
 }
 
 void ConstructTrie()
